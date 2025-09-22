@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Client Panel</title>
+  <style>body { font-family: Arial; padding: 20px; }</style>
+</head>
+<body>
+  <h1>👨‍💼 Müşteri Paneli</h1>
+  <button onclick="logout()">Çıkış Yap</button>
+  <h3>Geçmiş Rezervasyonlar</h3>
+  <div id="history">
+    <div>15/05/2025 - Amsterdam → Rotterdam - 🚛 Yolda</div>
+    <div>10/05/2025 - Amsterdam → Brussel - ✅ Tamamlandı</div>
+  </div>
+
+  <script>
+    function logout() {
+      localStorage.removeItem('token');
+      localStorage.removeItem('role');
+      window.location.href = 'index.html';
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+document.getElementById('loginForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+
+  const username = document.getElementById('username').value;
+  const password = document.getElementById('password').value;
+  const message = document.getElementById('message');
+
+  // Basit demo: kullanıcı adı "admin", şifre "1234"
+  if (username === 'admin' && password === '1234') {
+    message.style.color = 'green';
+    message.textContent = 'Giriş başarılı! Yönlendiriliyorsunuz...';
+    setTimeout(() => {
+      alert('Hoş geldin, ' + username + '!');
+    }, 1500);
+  } else {
+    message.style.color = 'red';
+    message.textContent = 'Hatalı kullanıcı adı veya şifre!';
+  }
+});

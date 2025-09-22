@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Admin Panel</title>
+  <style>body { font-family: Arial; padding: 20px; }</style>
+</head>
+<body>
+  <h1>🔐 Admin Panel</h1>
+  <button onclick="logout()">Çıkış Yap</button>
+  <div id="reservations"></div>
+
+  <script>
+    async function loadReservations() {
+      const token = localStorage.getItem('token');
+      const res = await fetch('http://153.92.221.140:3001/api/reservations', {
+        headers: { 'Authorization': `Bearer ${token}` }
+      });
+      const data = await res.json();
+      document.getElementById('reservations').innerHTML = 
+        data.map(r => `<div><strong>${r.client}</strong> - ${r.status} - ${r.driver || 'Sürücü atanmadı'}</div>`).join('');
+    }
+
+    function logout() {
+      localStorage.removeItem('token');
+      localStorage.removeItem('role');
+      window.location.href = 'index.html';
+    }
+
+    loadReservations();
+  </script>
+</body>
+</html>

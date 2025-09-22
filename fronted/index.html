@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="nl" id="htmlTag">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Karaman Logistiek - Spoeddienst Amsterdam & Internationaal</title>
+  <style id="mainStyle">
+    :root {
+      --bg-primary: linear-gradient(135deg, #0055a4, #003366);
+      --bg-light: rgba(255, 255, 255, 0.95);
+      --text-dark: #333;
+      --text-light: white;
+      --accent: #d32f2f;
+      --success: #28a745;
+      --shadow: rgba(0,0,0,0.1);
+      --card-bg: white;
+      --footer-bg: rgba(0,0,0,0.15);
+    }
+
+    [data-theme="dark"] {
+      --bg-primary: linear-gradient(135deg, #002244, #001122);
+      --bg-light: rgba(30, 30, 30, 0.95);
+      --text-dark: #f0f0f0;
+      --text-light: #cccccc;
+      --accent: #ff5252;
+      --success: #4caf50;
+      --shadow: rgba(0,0,0,0.3);
+      --card-bg: #222;
+      --footer-bg: rgba(0,0,0,0.3);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-dark);
+      line-height: 1.6;
+      transition: background 0.3s ease;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    header {
+      text-align: center;
+      padding: 40px 20px;
+      background: var(--bg-light);
+      border-radius: 15px;
+      margin-bottom: 30px;
+      box-shadow: 0 5px 20px var(--shadow);
+      position: relative;
+    }
+
+    .theme-toggle {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: var(--accent);
+      color: white;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .lang-switcher {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      display: flex;
+      gap: 10px;
+    }
+
+    .lang-btn {
+      background: var(--bg-light);
+      border: 2px solid #0055a4;
+      color: #0055a4;
+      padding: 5px 12px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .lang-btn.active {
+      background: #0055a4;
+      color: white;
+    }
+
+    .logo {
+      font-size: 3.5rem;
+      font-weight: 800;
+      color: #0055a4;
+      margin-bottom: 5px;
+      letter-spacing: -1px;
+    }
+
+    .subtitle {
+      font-size: 1.3rem;
+      color: var(--accent);
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+
+    .tagline {
+      font-size: 1.1rem;
+      color: var(--text-dark);
+      margin-bottom: 20px;
+    }
+
+    .hero {
+      background: url('https://images.unsplash.com/photo-1560438914-57165db4b250?auto=format&fit=crop&w=1200&q=80') no-repeat center center/cover;
+      height: 350px;
+      border-radius: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-light);
+      text-shadow: 0 2px 5px rgba(0,0,0,0.5);
+      margin-bottom: 30px;
+      position: relative;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.3);
+      border-radius: 15px;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding: 0 20px;
+    }
+
+    .hero h2 {
+      font-size: 2.5rem;
+      margin-bottom: 15px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .live-badge {
+      display: inline-block;
+      background: var(--accent);
+      color: white;
+      padding: 8px 20px;
+      border-radius: 30px;
+      font-size: 1rem;
+      font-weight: bold;
+      margin-bottom: 20px;
+      animation: pulse 2s infinite;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+
+    .services {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 25px;
+      margin-bottom: 40px;
+    }
+
+    .service-card {
+      background: var(--card-bg);
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px var(--shadow);
+      text-align: center;
+      transition: transform 0.3s ease;
+      color: var(--text-dark);
+    }
+
+    .service-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .service-card h3 {
+      color: #0055a4;
+      margin-bottom: 15px;
+      font-size: 1.3rem;
+    }
+
+    .cta {
+      text-align: center;
+      padding: 50px 20px;
+      background: var(--bg-light);
+      border-radius: 15px;
+      margin-bottom: 30px;
+      box-shadow: 0 5px 20px var(--shadow);
+    }
+
+    .cta h2 {
+      font-size: 2.2rem;
+      color: var(--accent);
+      margin-bottom: 20px;
+      text-transform: uppercase;
+    }
+
+    .contact-btns {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin: 30px 0;
+    }
+
+    .phone-btn, .whatsapp-btn {
+      display: inline-block;
+      color: white;
+      padding: 18px 40px;
+      font-size: 1.3rem;
+      font-weight: bold;
+      border-radius: 50px;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      margin: 10px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .phone-btn {
+      background: #28a745;
+      box-shadow: 0 6px 20px rgba(40, 167, 69, 0.4);
+    }
+
+    .phone-btn:hover {
+      background: #218838;
+      transform: scale(1.05);
+      box-shadow: 0 8px 25px rgba(40, 167, 69, 0.6);
+    }
+
+    .whatsapp-btn {
+      background: #25d366;
+      box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+    }
+
+    .whatsapp-btn:hover {
+      background: #1ebe58;
+      transform: scale(1.05);
+      box-shadow: 0 8px 25px rgba(37, 211, 102, 0.6);
+    }
+
+    .coverage {
+      background: var(--footer-bg);
+      padding: 25px;
+      border-radius: 15px;
+      text-align: center;
+      margin-bottom: 30px;
+      color: var(--text-light);
+    }
+
+    .coverage h3 {
+      color: var(--text-light);
+      margin-bottom: 15px;
+      font-size: 1.5rem;
+    }
+
+    .flags {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 15px;
+      flex-wrap: wrap;
+    }
+
+    .flag {
+      background: var(--card-bg);
+      padding: 10px 20px;
+      border-radius: 30px;
+      font-weight: bold;
+      font-size: 0.9rem;
+      box-shadow: 0 3px 10px var(--shadow);
+      color: var(--text-dark);
+    }
+
+    /* Reservation Form */
+    .reservation-form {
+      background: var(--bg-light);
+      padding: 40px;
+      border-radius: 15px;
+      margin: 40px 0;
+      box-shadow: 0 5px 20px var(--shadow);
+      color: var(--text-dark);
+    }
+
+    .reservation-form h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #0055a4;
+      font-size: 2rem;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: bold;
+      color: var(--text-dark);
+    }
+
+    .form-group input, .form-group textarea, .form-group select {
+      width: 100%;
+      padding: 12px;
+      border: 2px solid #ddd;
+      border-radius: 8px;
+      font-size: 1rem;
+      background: var(--card-bg);
+      color: var(--text-dark);
+    }
+
+    .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+      outline: none;
+      border-color: #0055a4;
+    }
+
+    .submit-btn {
+      width: 100%;
+      padding: 15px;
+      background: #0055a4;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 1.2rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .submit-btn:hover {
+      background: #003366;
+    }
+
+    footer {
+      text-align: center;
+      padding: 25px;
+      background: var(--footer-bg);
+      border-radius: 15px;
+      color: var(--text-light);
+      font-size: 0.95rem;
+    }
+
+    .admin-link {
+      display: block;
+      margin-top: 15px;
+      color: #ffcc00;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .admin-link:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 768px) {
+      .logo { font-size: 2.8rem; }
+      .hero h2 { font-size: 2rem; }
+      .phone-btn, .whatsapp-btn { padding: 15px 30px; font-size: 1.1rem; }
+      .contact-btns { flex-direction: column; align-items: center; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <button class="theme-toggle" onclick="toggleTheme()">🌙 Dark Mode</button>
+      <div class="lang-switcher">
+        <button class="lang-btn active" onclick="switchLanguage('nl')">NL</button>
+        <button class="lang-btn" onclick="switchLanguage('en')">EN</button>
+      </div>
+      <div class="logo">KARAMAN LOGISTIEK</div>
+      <div class="subtitle" id="subtitle">Amsterdam Based • EU & UK Wide</div>
+      <p class="tagline" id="tagline">Spoeddienst • Bakwagen met Laadklep • Internationaal Transport</p>
+    </header>
+
+    <div class="hero">
+      <div class="hero-content">
+        <div class="live-badge" id="liveBadge">🚛 BAKWAGEN MET LAADKLEP — NU BESCHIKBAAR!</div>
+        <h2 id="heroTitle">Direct Ophalen & Bezorgen in Hele Europa</h2>
+        <p id="heroDesc">Amsterdam, Nederland, Duitsland, België, Frankrijk, UK en meer...</p>
+      </div>
+    </div>
+
+    <div class="coverage">
+      <h3 id="coverageTitle">🌍 DEKKINGSGEBIED: HELE EUROPA + VERENIGD KONINKRIJK</h3>
+      <div class="flags">
+        <div class="flag">🇳🇱 Nederland</div>
+        <div class="flag">🇩🇪 Duitsland</div>
+        <div class="flag">🇧🇪 België</div>
+        <div class="flag">🇫🇷 Frankrijk</div>
+        <div class="flag">🇬🇧 UK</div>
+        <div class="flag">🇪🇸 Spanje</div>
+        <div class="flag">🇮🇹 Italië</div>
+        <div class="flag">🇹🇷 Türkiye</div>
+        <div class="flag">+20 Landen</div>
+      </div>
+    </div>
+
+    <div class="services">
+      <div class="service-card">
+        <h3 id="service1Title">⏱️ Spoeddienst 24/7</h3>
+        <p id="service1Desc">Binnen 60 minuten bij u — dag en nacht, weekend inbegrepen</p>
+      </div>
+      <div class="service-card">
+        <h3 id="service2Title">🚐 Bakwagen + Laadklep</h3>
+        <p id="service2Desc">Meubels, pallets, machines — veilig, snel, efficiënt vervoerd</p>
+      </div>
+      <div class="service-card">
+        <h3 id="service3Title">📦 Internationaal</h3>
+        <p id="service3Desc">Amsterdam → Hele Europa + UK — documenten, douane, alles geregeld</p>
+      </div>
+    </div>
+
+    <div class="cta">
+      <h2 id="ctaTitle">📞 CONTACTEER ONS NU!</h2>
+      <div class="contact-btns">
+        <a href="tel:+31614993563" class="phone-btn">📱 BEL: 06 1499 3563</a>
+        <a href="https://wa.me/31614993563" class="whatsapp-btn">💬 WhatsApp</a>
+      </div>
+      <p style="font-size: 0.9rem; margin-top: 10px;">(Klikken op mobiel → direct bellen of WhatsApp openen)</p>
+    </div>
+
+    <div class="reservation-form">
+      <h2 id="formTitle">📝 ONLINE RESERVERING</h2>
+      <form id="bookingForm">
+        <div class="form-group">
+          <label for="name" id="labelName">Naam / Company</label>
+          <input type="text" id="name" required>
+        </div>
+        <div class="form-group">
+          <label for="phone" id="labelPhone">Telefoonnummer</label>
+          <input type="tel" id="phone" required>
+        </div>
+        <div class="form-group">
+          <label for="pickup" id="labelPickup">Ophaallocatie</label>
+          <input type="text" id="pickup" placeholder="Straat, stad, postcode" required>
+        </div>
+        <div class="form-group">
+          <label for="delivery" id="labelDelivery">Bezorglocatie</label>
+          <input type="text" id="delivery" placeholder="Straat, stad, postcode" required>
+        </div>
+        <div class="form-group">
+          <label for="date" id="labelDate">Gewenste datum & tijd</label>
+          <input type="datetime-local" id="date" required>
+        </div>
+        <div class="form-group">
+          <label for="notes" id="labelNotes">Opmerkingen (type voertuig, laadklep, etc.)</label>
+          <textarea id="notes" rows="4" placeholder="Bijv: Bakwagen met laadklep nodig"></textarea>
+        </div>
+        <button type="submit" class="submit-btn" id="submitBtn">✅ RESERVEREN</button>
+      </form>
+    </div>
+
+    <footer>
+      &copy; 2025 Karaman Logistiek — Spoeddienst vanuit Amsterdam naar Hele Europa & UK
+      <br>
+      <a href="admin.html" class="admin-link" target="_blank">🔐 Admin Panel (Beheer)</a>
+    </footer>
+  </div>
+
+  <script>
+    // Dark Mode Toggle
+    function toggleTheme() {
+      const htmlTag = document.getElementById('htmlTag');
+      const themeToggle = document.querySelector('.theme-toggle');
+      if (htmlTag.getAttribute('data-theme') === 'dark') {
+        htmlTag.removeAttribute('data-theme');
+        themeToggle.textContent = '🌙 Dark Mode';
+        localStorage.setItem('theme', 'light');
+      } else {
+        htmlTag.setAttribute('data-theme', 'dark');
+        themeToggle.textContent = '☀️ Light Mode';
+        localStorage.setItem('theme', 'dark');
+      }
+    }
+
+    // Apply saved theme
+    window.addEventListener('DOMContentLoaded', () => {
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme === 'dark') {
+        document.getElementById('htmlTag').setAttribute('data-theme', 'dark');
+        document.querySelector('.theme-toggle').textContent = '☀️ Light Mode';
+      }
+    });
+
+    // Language Switcher (NL/EN)
+    const translations = {
+      nl: {
+        subtitle: "Amsterdam Based • EU & UK Wide",
+        tagline: "Spoeddienst • Bakwagen met Laadklep • Internationaal Transport",
+        heroTitle: "Direct Ophalen & Bezorgen in Hele Europa",
+        heroDesc: "Amsterdam, Nederland, Duitsland, België, Frankrijk, UK en meer...",
+        coverageTitle: "🌍 DEKKINGSGEBIED: HELE EUROPA + VERENIGD KONINKRIJK",
+        service1Title: "⏱️ Spoeddienst 24/7",
+        service1Desc: "Binnen 60 minuten bij u — dag en nacht, weekend inbegrepen",
+        service2Title: "🚐 Bakwagen + Laadklep",
+        service2Desc: "Meubels, pallets, machines — veilig, snel, efficiënt vervoerd",
+        service3Title: "📦 Internationaal",
+        service3Desc: "Amsterdam → Hele Europa + UK — documenten, douane, alles geregeld",
+        ctaTitle: "📞 CONTACTEER ONS NU!",
+        formTitle: "📝 ONLINE RESERVERING",
+        labelName: "Naam / Company",
+        labelPhone: "Telefoonnummer",
+        labelPickup: "Ophaallocatie",
+        labelDelivery: "Bezorglocatie",
+        labelDate: "Gewenste datum & tijd",
+        labelNotes: "Opmerkingen (type voertuig, laadklep, etc.)",
+        submitBtn: "✅ RESERVEREN"
+      },
+      en: {
+        subtitle: "Amsterdam Based • EU & UK Wide",
+        tagline: "Express Service • Panel Van with Tail Lift • International Transport",
+        heroTitle: "Immediate Pickup & Delivery Across Europe",
+        heroDesc: "Amsterdam, Netherlands, Germany, Belgium, France, UK and more...",
+        coverageTitle: "🌍 SERVICE AREA: ALL EUROPE + UNITED KINGDOM",
+        service1Title: "⏱️ 24/7 Express Service",
+        service1Desc: "At your location within 60 minutes — day and night, weekends included",
+        service2Title: "🚐 Panel Van + Tail Lift",
+        service2Desc: "Furniture, pallets, machinery — safely, quickly, and efficiently transported",
+        service3Title: "📦 International",
+        service3Desc: "Amsterdam → All Europe + UK — documents, customs, everything arranged",
+        ctaTitle: "📞 CONTACT US NOW!",
+        formTitle: "📝 ONLINE BOOKING",
+        labelName: "Name / Company",
+        labelPhone: "Phone Number",
+        labelPickup: "Pickup Location",
+        labelDelivery: "Delivery Location",
+        labelDate: "Preferred Date & Time",
+        labelNotes: "Notes (vehicle type, tail lift, etc.)",
+        submitBtn: "✅ BOOK NOW"
+      }
+    };
+
+    function switchLanguage(lang) {
+      document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+      document.querySelector(`.lang-btn[onclick="switchLanguage('${lang}')"]`).classList.add('active');
+      
+      for (const [key, text] of Object.entries(translations[lang])) {
+        const element = document.getElementById(key);
+        if (element) element.textContent = text;
+      }
+
+      // Save language preference
+      localStorage.setItem('language', lang);
+    }
+
+    // Apply saved language
+    window.addEventListener('DOMContentLoaded', () => {
+      const savedLang = localStorage.getItem('language') || 'nl';
+      switchLanguage(savedLang);
+    });
+
+    // Form Submission (for demo — in real project, send to backend)
+    document.getElementById('bookingForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      alert('Bedankt voor uw reservering! Wij nemen binnen 10 minuten contact met u op.');
+      this.reset();
+    });
+  </script>
+</body>
+</html>

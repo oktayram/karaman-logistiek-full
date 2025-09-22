@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Panel - Karaman Logistiek</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f9;
+      padding: 30px;
+    }
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    }
+    h1 {
+      color: #0055a4;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    .booking {
+      background: #f9f9f9;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-left: 4px solid #0055a4;
+      border-radius: 5px;
+    }
+    .booking h3 {
+      margin: 0 0 10px;
+      color: #333;
+    }
+    .booking p {
+      margin: 5px 0;
+      color: #555;
+    }
+    .no-bookings {
+      text-align: center;
+      color: #888;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🔐 Admin Panel - Karaman Logistiek</h1>
+    <p><strong>Notitie:</strong> Dit is een demo admin paneel. In een echt project worden boekingen opgeslagen in een database (bijv. PostgreSQL) en beheerd via een backend (Node.js, PHP, etc.).</p>
+
+    <h2>📋 Laatste Reserveringen</h2>
+    <div class="booking">
+      <h3>John Doe</h3>
+      <p>📞 +31612345678</p>
+      <p>📍 Ophalen: Damrak 1, Amsterdam</p>
+      <p>📍 Bezorgen: Stationsplein 2, Rotterdam</p>
+      <p>📅 15 mei 2025, 14:00</p>
+      <p>📝 Bakwagen met laadklep nodig</p>
+    </div>
+    <div class="booking">
+      <h3>Company XYZ</h3>
+      <p>📞 +31698765432</p>
+      <p>📍 Ophalen: Zuidas, Amsterdam</p>
+      <p>📍 Bezorgen: Brussel, België</p>
+      <p>📅 16 mei 2025, 09:30</p>
+      <p>📝 Internationale zending — documenten meesturen</p>
+    </div>
+    <div class="no-bookings">Geen nieuwe reserveringen.</div>
+  </div>
+</body>
+</html>

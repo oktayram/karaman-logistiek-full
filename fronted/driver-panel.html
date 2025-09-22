@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Driver Panel</title>
+  <style>body { font-family: Arial; padding: 20px; }</style>
+</head>
+<body>
+  <h1>🚛 Driver Panel</h1>
+  <p>Hoş geldin, <span id="driverName">Ahmet Y.</span></p>
+  <div id="tasks">Yükleniyor...</div>
+  <button onclick="logout()">Çıkış Yap</button>
+
+  <script>
+    // Demo: Görevleri listele
+    document.getElementById('tasks').innerHTML = `
+      <div>📍 Ophalen: Damrak 1, Amsterdam</div>
+      <div>📍 Bezorgen: Stationsplein 2, Rotterdam</div>
+      <div>📅 15 mei 2025, 14:00</div>
+      <button style="margin-top:10px; padding:10px; background:green; color:white; border:none; border-radius:5px;">✅ Tamamlandı</button>
+    `;
+
+    function logout() {
+      localStorage.removeItem('token');
+      localStorage.removeItem('role');
+      window.location.href = 'index.html';
+    }
+  </script>
+</body>
+</html>
